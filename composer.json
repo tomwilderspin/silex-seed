@@ -1,0 +1,14 @@
+{
+    "name": "tomwilderspin/sliex-seed",
+    "description": "A Basic start point for silex projects",
+    "require": {
+        "silex/silex": "1.2.*"
+    },
+    "authors": [
+        {
+            "name": "tomwilderspin",
+            "email": "tomwilderspin@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
