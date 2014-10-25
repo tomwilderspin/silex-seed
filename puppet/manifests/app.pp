@@ -1,4 +1,6 @@
 
+# set the global path
+Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] }
 
 # create a new run stage to ensure certain modules are included first
 stage { 'pre':

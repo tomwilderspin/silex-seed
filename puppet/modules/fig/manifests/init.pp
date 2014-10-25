@@ -15,7 +15,7 @@ class fig {
 
   exec { 'install-fig':
       require => Package['curl', 'docker.io'],
-      command => "curl -L https://github.com/docker/fig/releases/download/1.0.0/fig-`uname -s`-`uname -m` > /usr/local/bin/fig",
+      command => "curl -L https://github.com/docker/fig/releases/download/1.0.0/fig-${::kernel}-${::hardwaremodel} > /usr/local/bin/fig",
       notify  => Exec['fix-fig-permissions']
   }
 
