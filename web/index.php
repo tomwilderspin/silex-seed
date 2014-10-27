@@ -1,6 +1,4 @@
 <?php
-
-
 /** launchpad for test */
 
 require_once '../vendor/autoload.php';

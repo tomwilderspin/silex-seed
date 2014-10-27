@@ -2,3 +2,5 @@ web:
   build: .
   ports:
    - "80:80"
+  volumes:
+    - /vagrant_app/nginx/logs/:/var/log/nginx/
