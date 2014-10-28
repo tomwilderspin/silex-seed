@@ -8,12 +8,12 @@ curl -L -o /etc/yum.repos.d/hop5.repo "http://www.hop5.in/yum/el6/hop5.repo"
 
 RUN yum install -y python-meld3 http://dl.fedoraproject.org/pub/epel/6/i386/supervisor-2.1-8.el6.noarch.rpm
 
-RUN ["yum", "-y", "install", "nginx"]
+RUN ["yum", "-y", "install", "curl", "curl-devel", "php", "php-common", "php-curl", "php-mysql", "php-devel", "php-gd", "php-pspell", "php-snmp", "php-xml","hhvm"]
 
-ADD nginx.conf /etc/nginx/nginx.conf
+ADD config.hdf /etc/hhvm/config.hdf
 
-RUN chkconfig nginx on
+RUN service hhvm restart
 
-EXPOSE 80
+EXPOSE 8000
 
-CMD /usr/sbin/nginx -c /etc/nginx/nginx.conf
+CMD hhvm -m server -p 8000

@@ -1,6 +1,27 @@
-web:
-  build: .
+data:
+  build: docker/web/app
+  volumes:
+    - /vagrant:/var/www
+
+composer:
+  build: docker/web/composer
+  volumes_from:
+    - data
+
+hhvm:
+  build: docker/web/hhvm
+  volumes_from:
+    - data
+
+nginx:
+  build: docker/web/nginx
   ports:
    - "80:80"
   volumes:
-    - /vagrant_app/nginx/logs/:/var/log/nginx/
+    - /vagrant/nginx/logs/:/var/log/nginx/
+  volumes_from:
+    - data
+  links:
+    - hhvm
+
+
