@@ -2,3 +2,5 @@
 .idea
 .vagrant
 composer.lock
+/hhvm
+/nginx
