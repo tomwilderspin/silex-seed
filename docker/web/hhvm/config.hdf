@@ -9,7 +9,7 @@ Eval {
 
 Server {
   Port = 8000
-  SourceRoot = /var/www/web/
+  SourceRoot = /app/web/
   Type = fastcgi
   DefaultDocument = index.php
 }

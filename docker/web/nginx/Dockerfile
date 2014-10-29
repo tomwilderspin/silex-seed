@@ -10,10 +10,10 @@ RUN yum install -y python-meld3 http://dl.fedoraproject.org/pub/epel/6/i386/supe
 
 RUN ["yum", "-y", "install", "nginx"]
 
-ADD nginx.conf /etc/nginx/nginx.conf
+ADD nginx.conf /etc/nginx/
 
-RUN chkconfig nginx on
+ADD hhvm.conf /etc/nginx/conf.d/
 
 EXPOSE 80
 
-CMD /usr/sbin/nginx -c /etc/nginx/nginx.conf
+CMD nginx

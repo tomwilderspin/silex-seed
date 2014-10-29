@@ -10,8 +10,9 @@ RUN apt-get update -y && \
     apt-get clean
 
 RUN mkdir -p /data/www
-VOLUME ["/data"]
-WORKDIR /data/www
+
+WORKDIR /app
 
 ENTRYPOINT ["composer"]
-CMD ["--help"]
+
+CMD ["install"]

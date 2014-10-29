@@ -10,10 +10,8 @@ RUN yum install -y python-meld3 http://dl.fedoraproject.org/pub/epel/6/i386/supe
 
 RUN ["yum", "-y", "install", "curl", "curl-devel", "php", "php-common", "php-curl", "php-mysql", "php-devel", "php-gd", "php-pspell", "php-snmp", "php-xml","hhvm"]
 
-ADD config.hdf /etc/hhvm/config.hdf
-
-RUN service hhvm restart
+ADD config.hdf /etc/hhvm/config.conf
 
 EXPOSE 8000
 
-CMD hhvm -m server -p 8000
+CMD hhvm -m server -p 8000 -vServer.Type=fastcgi
