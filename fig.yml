@@ -22,5 +22,19 @@ nginx:
     - /vagrant/nginx/logs/:/var/log/nginx/
   links:
     - hhvm:hhvm
+shipyard:
+    image: shipyard/shipyard
+    ports:
+        - "8005:8080"
+    volumes:
+      - /var/run/docker.sock:/docker.sock
+    links:
+        - rethinkdb:rethinkdb
+rethinkdb:
+    image: shipyard/rethinkdb
+    expose:
+        - "8080"
+        - "28015"
+        - "29015"
 
 
