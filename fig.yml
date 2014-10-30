@@ -13,7 +13,7 @@ hhvm:
   volumes_from:
     - data
 nginx:
-  image: tomwilderspin/nginx
+  image: tomwilderspin/hhvm-nginx
   volumes_from:
     - data
   ports:
