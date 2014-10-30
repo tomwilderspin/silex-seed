@@ -1,19 +1,19 @@
 data:
-  build: docker/web/app
+  build: .
   volumes:
     - /vagrant:/app
 composer:
-  build: docker/web/composer
+  build: tomwilderspin/composer
   volumes_from:
     - data
 hhvm:
-  build: docker/web/hhvm
+  build: tomwilderspin/hhvm
   volumes:
     - /vagrant/hhvm/logs/hhvm/:/var/log/hhvm/
   volumes_from:
     - data
 nginx:
-  build: docker/web/nginx
+  build: tomwilderspin/nginx
   volumes_from:
     - data
   ports:
