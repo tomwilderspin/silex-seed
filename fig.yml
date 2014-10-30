@@ -3,17 +3,17 @@ data:
   volumes:
     - /vagrant:/app
 composer:
-  build: tomwilderspin/composer
+  image: tomwilderspin/composer
   volumes_from:
     - data
 hhvm:
-  build: tomwilderspin/hhvm
+  image: tomwilderspin/hhvm
   volumes:
     - /vagrant/hhvm/logs/hhvm/:/var/log/hhvm/
   volumes_from:
     - data
 nginx:
-  build: tomwilderspin/nginx
+  image: tomwilderspin/nginx
   volumes_from:
     - data
   ports:
