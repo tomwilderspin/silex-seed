@@ -2,7 +2,8 @@
     "name": "tomwilderspin/sliex-seed",
     "description": "A Basic start point for silex projects",
     "require": {
-        "silex/silex": "1.2.*"
+        "silex/silex": "1.2.*",
+        "google/apiclient": "1.0.*@beta"
     },
     "authors": [
         {
