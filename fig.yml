@@ -3,13 +3,13 @@ data:
   volumes:
     - /vagrant:/app
 composer:
-  image: tomwilderspin/composer
-  volumes_from:
-    - data
+  image: composer/composer
+  volumes:
+    - /vagrant:/app
 hhvm:
   image: tomwilderspin/hhvm
   volumes:
-    - /vagrant/hhvm/logs/hhvm/:/var/log/hhvm/
+    - /vagrant/logs/hhvm/:/var/log/hhvm/
   volumes_from:
     - data
 nginx:
@@ -19,7 +19,7 @@ nginx:
   ports:
    - "80:80"
   volumes:
-    - /vagrant/nginx/logs/:/var/log/nginx/
+    - /vagrant/logs/nginx/:/var/log/nginx/
   links:
     - hhvm:hhvm
 shipyard:
