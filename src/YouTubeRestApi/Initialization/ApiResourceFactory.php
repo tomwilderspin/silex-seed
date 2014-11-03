@@ -6,6 +6,8 @@ namespace YouTubeRestApi\Initialization;
 
 
 
+use YouTubeRestApi\Resource\VideoResource;
+
 class ApiResourceFactory {
 
 
@@ -30,7 +32,7 @@ class ApiResourceFactory {
 
     public function getVideoResource()
     {
-
+        return new VideoResource($this->youTubeService);
     }
 
 
