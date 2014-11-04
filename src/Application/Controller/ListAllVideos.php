@@ -9,8 +9,25 @@
 namespace Application\Controller;
 
 
+use YouTubeRestApi\Resource\VideoResource;
+
 class ListAllVideos {
 
+    /**
+     * @var \YouTubeRestApi\Resource\VideoResource
+     */
+    private $videoResource;
 
+    public function __construct(VideoResource $videoResource)
+    {
+        $this->videoResource = $videoResource;
+    }
+
+    public function getList()
+    {
+
+        $videoDetails = $this->videoResource->fetchList();
+
+    }
 
 } 
