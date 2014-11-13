@@ -32,7 +32,7 @@ class ApiResourceFactory {
 
     public function getVideoResource()
     {
-        return new VideoResource($this->youTubeService);
+        return new VideoResource($this->getYouTubeService());
     }
 
 

@@ -6,7 +6,7 @@
  * Time: 17:43
  */
 
-namespace Application\Controller;
+namespace Application\Interactor;
 
 
 use YouTubeRestApi\Resource\VideoResource;

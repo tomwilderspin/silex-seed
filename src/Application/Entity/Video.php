@@ -155,6 +155,4 @@ class Video {
         return $this->width;
     }
 
-
-
 } 
