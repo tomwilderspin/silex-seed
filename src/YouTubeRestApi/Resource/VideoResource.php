@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tom
- * Date: 02/11/14
- * Time: 20:45
- */
+
 
 namespace YouTubeRestApi\Resource;
 
