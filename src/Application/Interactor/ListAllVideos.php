@@ -1,17 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tom
- * Date: 02/11/14
- * Time: 17:43
- */
+
 
 namespace Application\Interactor;
 
 
 use YouTubeRestApi\Resource\VideoResource;
 
-class ListAllVideos {
+class ListAllVideos implements ListInterface {
 
     /**
      * @var \YouTubeRestApi\Resource\VideoResource

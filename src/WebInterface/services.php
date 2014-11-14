@@ -1,6 +1,39 @@
 <?php
 
 /**
+ * Controllers
+ */
+
+$app['videos.controller'] = $app->share(function() use ($app){
+
+    return new \Controller\VideoController();
+
+});
+
+
+/**
+ * Handler
+ */
+
+$app['video.handler'] = $app->share(function() use ($app){
+
+    return new \Handler\ListHandler($app['listAllVideos.interactor']);
+
+});
+
+
+/**
+ * Interactor
+ */
+
+$app['listAllVideos.interactor'] = $app->share(function() use ($app){
+
+    return new \Application\Interactor\ListAllVideos($app['video.resource']);
+
+});
+
+
+/**
  * Google API client & YouTube resources
  */
 
