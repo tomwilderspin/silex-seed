@@ -4,7 +4,7 @@
  * Controllers
  */
 
-$app['videos.controller'] = $app->share(function() use ($app){
+$app['video.controller'] = $app->share(function($app){
 
     return new \Controller\VideoController();
 
@@ -15,7 +15,7 @@ $app['videos.controller'] = $app->share(function() use ($app){
  * Handler
  */
 
-$app['video.handler'] = $app->share(function() use ($app){
+$app['video.handler'] = $app->share(function($app){
 
     return new \Handler\ListHandler($app['listAllVideos.interactor']);
 
@@ -26,7 +26,7 @@ $app['video.handler'] = $app->share(function() use ($app){
  * Interactor
  */
 
-$app['listAllVideos.interactor'] = $app->share(function() use ($app){
+$app['listAllVideos.interactor'] = $app->share(function($app){
 
     return new \Application\Interactor\ListAllVideos($app['video.resource']);
 
@@ -37,18 +37,18 @@ $app['listAllVideos.interactor'] = $app->share(function() use ($app){
  * Google API client & YouTube resources
  */
 
-$app['googleClient'] = $app->share(function() use ($app) {
+$app['googleClient'] = $app->share(function($app){
 
     $googleClient = new Google_Client();
 
     $googleClient->setApplicationName('video browser');
-    $googleClient->setDeveloperKey($app['youTubeApiKey']);
+    $googleClient->setDeveloperKey($app['global.config']['youTubeApiKey']);
     return $googleClient;
 
 });
 
 
-$app['youTube.service'] = $app->share(function() use ($app) {
+$app['youTube.service'] = $app->share(function($app){
 
     $resources = new \YouTubeRestApi\Initialization\ApiResourceFactory($app['googleClient']);
 
@@ -56,7 +56,7 @@ $app['youTube.service'] = $app->share(function() use ($app) {
 
 });
 
-$app['video.resource'] = $app->share(function() use ($app) {
+$app['video.resource'] = $app->share(function($app){
 
     $service = $app['youTube.service'];
     return $service->getVideoResource();

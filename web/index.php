@@ -3,15 +3,14 @@
 
 require_once '../vendor/autoload.php';
 
-
 $app = new Silex\Application();
 
-$app->get('/', function() use($app) {
-    return 'root path!';
-});
+// global config
+$app['global.config'] = require_once '../config/global.php';
 
-$app->get('/hello/{name}', function($name) use($app) {
-    return 'Hello '.$app->escape($name);
-});
+$app->register(new \Silex\Provider\ServiceControllerServiceProvider());
+
+require_once '../src/WebInterface/services.php';
+require_once '../src/WebInterface/routes.php';
 
 $app->run();
