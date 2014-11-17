@@ -22,7 +22,12 @@ class ListAllVideos implements ListInterface {
     {
 
         $videoDetails = $this->videoResource->fetchList();
+        $results = array();
+        foreach($videoDetails as $videoItem) {
+            $results[] = $videoItem->toArray();
+        }
 
+        return $results;
     }
 
 } 

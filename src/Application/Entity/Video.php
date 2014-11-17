@@ -155,4 +155,21 @@ class Video {
         return $this->width;
     }
 
+    public function toArray()
+    {
+        $properties = get_object_vars($this);
+
+        $result = array();
+
+        foreach ($properties as $key => $value) {
+
+            $getter = 'get' . ucwords($key);
+
+            if (method_exists($this, $getter)) {
+                $result[$key] = $this->$getter();
+            }
+        }
+        return $result;
+    }
+
 } 

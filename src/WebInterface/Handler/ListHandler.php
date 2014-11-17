@@ -16,19 +16,38 @@ class ListHandler {
 
     private $interactor;
 
+    private $templateEnvironment;
 
-    public function __construct(ListInterface $interactor)
-    {
+    private $templateName;
+
+
+    public function __construct(
+        ListInterface $interactor,
+        \Twig_Environment $templateEnvironment,
+        $templateName
+    ) {
         $this->interactor = $interactor;
+        $this->templateEnvironment = $templateEnvironment;
+        $this->templateName = $templateName;
     }
 
 
     public function get()
     {
         $result = $this->interactor->getList();
+        $responseContent = array(
+            'videos' => array(),
+        );
+        foreach ($result as $video) {
+            $responseContent['videos'][] = array(
+                'name' => $video['name'],
+            );
+        }
 
-        //todo needs template engine for view
-        return json_encode($result);
+        return $this->templateEnvironment->render(
+            $this->templateName,
+            $responseContent
+        );
     }
 
 
