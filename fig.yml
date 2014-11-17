@@ -2,16 +2,15 @@ data:
   build: .
   volumes:
     - /vagrant:/app
+    - /vagrant:/srv/http
 composer:
   image: composer/composer
   volumes:
     - /vagrant:/app
-hhvm:
-  image: tomwilderspin/hhvm
-  volumes:
-    - /vagrant/logs/hhvm/:/var/log/hhvm/
+phpfpm:
+  image: jprjr/php-fpm
   volumes_from:
-    - data
+   - data
 nginx:
   image: tomwilderspin/hhvm-nginx
   volumes_from:
@@ -20,21 +19,8 @@ nginx:
    - "80:80"
   volumes:
     - /vagrant/logs/nginx/:/var/log/nginx/
+    - /vagrant/resources/nginx/phpfpm.conf:/etc/nginx/conf.d/
   links:
-    - hhvm:hhvm
-shipyard:
-    image: shipyard/shipyard
-    ports:
-        - "8005:8080"
-    volumes:
-      - /var/run/docker.sock:/docker.sock
-    links:
-        - rethinkdb:rethinkdb
-rethinkdb:
-    image: shipyard/rethinkdb
-    expose:
-        - "8080"
-        - "28015"
-        - "29015"
+    - phpfpm:phpfpm
 
 
