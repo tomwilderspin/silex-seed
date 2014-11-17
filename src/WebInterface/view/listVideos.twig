@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Videos</title>
+</head>
+<body>
+<h2>A list of videos from youtube</h2>
+<ul>
+    {% for video in videos %}
+        <li>
+            <h4>{{ video.name }}</h4>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
