@@ -6,7 +6,7 @@
 
 $app['video.controller'] = $app->share(function($app){
 
-    return new \Controller\VideoController();
+    return new \WebInterface\Controller\VideoController();
 
 });
 
@@ -17,7 +17,11 @@ $app['video.controller'] = $app->share(function($app){
 
 $app['video.handler'] = $app->share(function($app){
 
-    return new \Handler\ListHandler($app['listAllVideos.interactor']);
+    return new \WebInterface\Handler\ListHandler(
+        $app['listAllVideos.interactor'],
+        $app['twig'],
+        'listVideos.twig'
+    );
 
 });
 

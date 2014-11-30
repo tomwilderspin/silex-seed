@@ -11,18 +11,40 @@ class VideoResource {
      */
     private $youTubeService;
 
+    private $entityName;
 
-    public function __construct(\Google_Service_YouTube $youTubeService)
+
+    public function __construct(\Google_Service_YouTube $youTubeService, $entityName)
     {
         $this->youTubeService = $youTubeService;
+
+        $this->entityName = $entityName;
     }
 
 
     public function fetchList()
     {
-        $results = $this->youTubeService->videos->listVideos('snippet');
+        $options = array(
+            'chart' => 'mostPopular',
+            'regionCode' => 'GB',
+            'videoCategoryId' => '19',
+        );
 
-        return $results->getItems();
+        $results = $this->youTubeService->videos->listVideos('snippet',$options);
+
+        $videos = array();
+
+        foreach ($results as $videoItem) {
+
+            $video = new $this->entityName();
+
+            $video->setName($videoItem['snippet']['title']);
+            $video->setDetails($videoItem['snippet']['description']);
+
+            $videos[] = $video;
+        }
+
+        return $videos;
     }
 
 } 

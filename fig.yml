@@ -1,26 +1,44 @@
 data:
   build: .
   volumes:
-    - /vagrant:/app
     - /vagrant:/srv/http
 composer:
   image: composer/composer
   volumes:
     - /vagrant:/app
 phpfpm:
-  image: jprjr/php-fpm
-  volumes_from:
-   - data
+    build: resources/phpfpm
+    environment:
+      DEV_MODE: 1
+    volumes_from:
+      - data
+    volumes:
+      - /vagrant/logs/phpfpm:/var/log/phpfpm/
 nginx:
-  image: tomwilderspin/hhvm-nginx
+  build: resources/nginx
   volumes_from:
     - data
   ports:
-   - "80:80"
+    - "80:80"
   volumes:
     - /vagrant/logs/nginx/:/var/log/nginx/
-    - /vagrant/resources/nginx/phpfpm.conf:/etc/nginx/conf.d/
   links:
-    - phpfpm:phpfpm
-
-
+    - phpfpm:fastcgi
+phpunitUnit:
+    build: resources/phpunit
+    environment:
+      TEST_SUITE: unit
+    volumes:
+      - /vagrant:/code
+phpunitFunctional:
+    build: resources/phpunit
+    environment:
+      TEST_SUITE: functional
+    volumes:
+      - /vagrant:/code
+phpunitAll:
+    build: resources/phpunit
+    environment:
+      TEST_SUITE: all
+    volumes:
+      - /vagrant:/code

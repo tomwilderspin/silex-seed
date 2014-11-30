@@ -6,7 +6,7 @@
  * Time: 08:59
  */
 
-namespace Handler;
+namespace WebInterface\Handler;
 
 
 use Application\Interactor\ListInterface;
@@ -35,6 +35,7 @@ class ListHandler {
     public function get()
     {
         $result = $this->interactor->getList();
+
         $responseContent = array(
             'videos' => array(),
         );

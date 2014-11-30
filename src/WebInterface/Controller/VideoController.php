@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Controller;
+namespace WebInterface\Controller;
 
 
 use Silex\Application;
